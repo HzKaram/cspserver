@@ -17,10 +17,10 @@ app.get("/", (request, response) => {
 
   // Old style: also with report-to on top of report-uri. report-to can be used even in the old style, when paired with the "Report-To" header.
   
-  // New style: report-to only (not recommended because of xbrowser support)
+  // New style: report-to only (not recommended with old reporting API, because of xbrowser support)
   response.set(
     "Content-Security-Policy",
-    `script-src 'none'; object-src 'none'; report-to csp-endpoint`
+    `script-src 'none'; object-src 'none'; report-to csp-endpoint;`
   );
   
   // 2. SET ENDPOINTS
