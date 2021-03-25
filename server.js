@@ -8,22 +8,22 @@ app.use(express.static("public"));
 
 app.get("/", (request, response) => {
   
+  // Very old style: report-uri only
+  
+  // Old style
     response.set(
     "Content-Security-Policy",
-    `script-src 'none'; object-src 'none'; report-uri ${REPORTING_ENDPOINT}; erport-to csp-endpoint`
+    `script-src 'none'; object-src 'none'; report-uri ${REPORTING_ENDPOINT}; report-to csp-endpoint`
   );
+  // End old style (report-to can be used even in the old style, when paired with the "Report-To" header)
   
-    response.set(
-    // "Report-To": {
-    //   group: "csp",
-    //   max_age: 10886400,
-    //   endpoints: [{ url: "https://csp-reports.glitch.me/post" }]
-    // },
-    "Content-Security-Policy-Report-Only",
-    `script-src 'none'; object-src 'none'; report-uri ${REPORTING_ENDPOINT}; report-to csp`
-  );
+  // New style
+  // response.set(
+  //   "Content-Security-Policy",
+  //   `script-src 'none'; object-src 'none'; report-uri ${REPORTING_ENDPOINT}; report-to csp-endpoint`
+  // );
   
-  response.set("Reporting-Endpoints", `csp-endpoint="${REPORTING_ENDPOINT}"`);
+  // response.set("Reporting-Endpoints", `csp-endpoint="${REPORTING_ENDPOINT}"`);
   
   response.sendFile(__dirname + "/views/index.html");
 });
