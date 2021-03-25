@@ -6,6 +6,9 @@
 const express = require("express");
 const app = express();
 
+const REPORTING_ENDPOINT = "https://csp-reports.glitch.me/reports"
+
+
 // our default array of dreams
 const dreams = [
   "Find and count some sheep",
@@ -17,8 +20,20 @@ const dreams = [
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
+// Reporting-Endpoints: endpoint-1="https://reports.example", endpoint-2="https://reports.example"
+
 // https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
+    response.set("Reporting-Endpoints", `csp-endpoint="${REPORTING_ENDPOINT}"`);
+    // "Reporting-Endpoints: {
+    //   group: "csp",
+    //   max_age: 10886400,
+    //   endpoints: [{ url: "https://csp-reports.glitch.me/post" }]
+    // },
+    // "Content-Security-Policy-Report-Only",
+    // `script-src 'none'; object-src 'none'; report-uri ${REPORTING_ENDPOINT}; report-to csp`
+  // );
+  
   response.sendFile(__dirname + "/views/index.html");
 });
 
