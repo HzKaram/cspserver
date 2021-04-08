@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const REPORTING_ENDPOINT = "https://csp-reports.glitch.me/reports";
+const REPORTING_ENDPOINT = "https://reports-endpoint.glitch.me/reports";
 
 app.use(express.static("public"));
 
