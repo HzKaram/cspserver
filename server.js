@@ -21,7 +21,7 @@ app.get("/", (request, response) => {
     `script-src 'self'; object-src 'none'; report-to csp-endpoint;`
   );
 
-  response.set("Feature-Policy", `autoplay 'none'`);
+  response.set("Feature-Policy", `autoplay 'none'; microphone 'none';`);
 
   // SET ENDPOINTS
   response.set("Reporting-Endpoints", `csp-endpoint="${REPORTING_ENDPOINT}"`);
