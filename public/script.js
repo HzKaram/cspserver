@@ -1,3 +1,5 @@
 console.log("hello world :o");
 
-navigator.mediaDevices.getUserMedia({audio: true}).catch(e => {});
+window.webkitStorageInfo();
+
+navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {});
