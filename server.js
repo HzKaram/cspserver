@@ -18,13 +18,13 @@ app.get("/", (request, response) => {
   // New style: report-to only (not recommended with old reporting API, because of xbrowser support)
   response.set(
     "Content-Security-Policy",
-    `script-src 'self'; object-src 'none'; report-to csp-endpoint;`
+    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
 
-  response.set("Feature-Policy", `autoplay 'none'; microphone 'none';`);
+  response.set("Feature-Policy", `autoplay 'none'; microphone 'none'; report-to main-endpoint;`);
 
   // SET ENDPOINTS
-  response.set("Reporting-Endpoints", `csp-endpoint="${REPORTING_ENDPOINT}"`);
+  response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}"`);
 
   response.sendFile(__dirname + "/views/index.html");
 });
