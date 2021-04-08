@@ -20,7 +20,7 @@ app.get("/", (request, response) => {
   // New style: report-to only (not recommended with old reporting API, because of xbrowser support)
   response.set(
     "Content-Security-Policy",
-    `script-src 'none'; object-src 'none'; report-to csp-endpoint;`
+    `script-src 'self'; object-src 'none'; report-to csp-endpoint;`
   );
   
   // 2. SET ENDPOINTS
