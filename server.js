@@ -21,10 +21,11 @@ app.get("/", (request, response) => {
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
 
+  // this yntaxt means no microphone allowed
   response.set("Permissions-Policy", `microphone=()`);
 
   // SET ENDPOINTS
-  response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}"`);
+  response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`);
 
   response.sendFile(__dirname + "/views/index.html");
 });
