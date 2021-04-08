@@ -21,7 +21,7 @@ app.get("/", (request, response) => {
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
 
-  response.set("Permissions-Policy", `microphone=(); report-to main-endpoint`);
+  response.set("Permissions-Policy", `microphone=()report-to=""`);
 
   // SET ENDPOINTS
   response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}"`);
