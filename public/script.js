@@ -9,4 +9,8 @@ navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {});
 // Document policy violation
 document.write("<h1>Hey!</h1>");
 
+document.addEventListener('wheel', event => {
+  event.preventDefault();
+});
+
 performance.measureUserAgentSpecificMemory().catch(e => {});
