@@ -21,8 +21,10 @@ app.get("/", (request, response) => {
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
 
-  // this yntaxt means no microphone allowed
+  // this syntax means no microphone allowed
   response.set("Permissions-Policy", `microphone=()`);
+  
+  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
 
   // SET ENDPOINTS
   response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`);

@@ -3,5 +3,8 @@ console.log("hello world :o");
 // Deprecation warning
 window.webkitStorageInfo;
 
-// Perimissions warning
+// Permissions policy violation
 navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {});
+
+// Document policy violation
+document.write("<h1>Out with the old, in with the new!</h1>");
