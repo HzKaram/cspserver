@@ -26,22 +26,14 @@ app.get("/", (request, response) => {
   
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
   
-  response.set("Cross-Origin-Embedder-Policy", `require-corp;report-to=main-endpoint`);
-  response.set("Cross-Origin-Opener-Policy", `same-origin;report-to=main-endpoint`);
+  response.set("Cross-Origin-Embedder-Policy-Report-Only", `require-corp;report-to=main-endpoint`);
   
 
   // SET ENDPOINTS
   response.set("Reporting-Endpoints", `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`);
 
-  
   response.sendFile(__dirname + "/views/index.html");
 });
-
-// // send the default array of dreams to the webpage
-// app.get("/dreams", (request, response) => {
-//   // express helps us take JS objects and send them as JSON
-//   response.json(dreams);
-// });
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
