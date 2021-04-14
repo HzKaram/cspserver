@@ -26,7 +26,7 @@ app.get("/", (request, response) => {
   
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
   
-  response.set("Cross-Origin-Embedder-Policy-Report-Only", `require-corp;report-to=main-endpoint`);
+  response.set("Cross-Origin-Embedder-Policy", `require-corp;report-to="main-endpoint"`);
   
 
   // SET ENDPOINTS
