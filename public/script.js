@@ -7,4 +7,6 @@ window.webkitStorageInfo;
 navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {});
 
 // Document policy violation
-document.write("<h1>Out with the old, in with the new!</h1>");
+document.write("<h1>Hey!</h1>");
+
+performance.measureUserAgentSpecificMemory().catch(e => {});
