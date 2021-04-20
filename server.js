@@ -4,6 +4,7 @@ const app = express();
 const REPORTING_ENDPOINT = "https://reports-endpoint.glitch.me/reports";
 
 app.use(express.static("public"));
+app.set("view engine", "pug");
 
 app.get("/v1", (request, response) => {
   response.set(
@@ -25,7 +26,10 @@ app.get("/v1", (request, response) => {
     `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`
   );
 
-  response.sendFile(__dirname + "/views/index.html");
+  response.render("index", {
+    version: "v1",
+    endpoint: `${REPORTING_ENDPOINT}`
+  });
 });
 
 app.get("/v0", (request, response) => {
@@ -56,7 +60,10 @@ app.get("/v0", (request, response) => {
 
   response.set("Report-To", `${x}, ${y}`);
 
-  response.sendFile(__dirname + "/views/index.html");
+  response.render("index", {
+    version: "v0",
+    endpoint: `${REPORTING_ENDPOINT}`
+  });
 });
 
 const listener = app.listen(process.env.PORT, () => {

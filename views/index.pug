@@ -1,0 +1,49 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  meta(name='description' content='A cool thing made with Glitch')
+  title Reporting API demo
+  link(rel='stylesheet' href='/style.css')
+  script(src='/script.js' defer='')
+  script(src='https://test/script.js' defer='')
+header
+  h1 Reporting API demo
+  span Reporting API version: 
+  span.version=`${version}`
+  |       Upon loading, this page generates one report of each of these types:
+  ul
+    li Permission policy violation
+    li Document policy violation
+    li Deprecation
+    li CSP violation
+    li COEP violation
+    li Browser intervention
+  |       (If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this
+  |       page.)
+  div
+  
+  |       Report version:
+  |       (for reports ...)
+  |       + Open ... to see reports
+  |       + Open to generate intervention report
+  |       https://intervention-generator.glitch.me/
+  ul
+    li
+      | For reports configured via the Reporting API v0, go to
+      a(href='/v0') /v0
+      | .
+    li
+      | For reports configured via the Reporting API v1, go to
+      a(href='/v0') /v1
+      | .
+  details
+    summary HTML bits that help generate violations
+    div
+      div
+        | COEP violation generator:
+        img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg')
+      div
+        | Intervention generator:
+        iframe(width='100' height='50' crossorigin='' src='https://intervention-generator.glitch.me/' title='')
