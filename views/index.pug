@@ -11,10 +11,14 @@ head
 header
   h1 Reporting API demo
   div
-    span Reporting API version: 
-    span(class=`badge ${version}`)=`${version}`
+    span This page uses the  
+    span(class=`badge ${version}`)=`Reporting API ${version}`
+    |.
   span.small=`For a demo of Reporting API ${otherVersion}, go to ` 
   a(href=`/${otherVersion}`)=otherVersion
+  |.
+  br
+  br
   div Upon loading, this page generates one report of each of these types:
   ul
     li Permission policy violation
@@ -23,23 +27,16 @@ header
     li CSP violation
     li COEP violation
     li Browser intervention
-  |       (If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this
-  |       page.)
+  |       If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this
+  |       page.
   div
+  a(href=endpoint)=endpoint
   
-  |       Report version:
-  |       (for reports ...)
-  |       + Open ... to see reports
-  |       + Open to generate intervention report
   |       https://intervention-generator.glitch.me/
-  ul
-    li
+  details
+    summary 💥 Troubleshooting: not seeing all reports?
+    div=`If you're not seeing a deprecation report pop up at ${endpoint}, try to open ${interventionGeneratorUrl} in a different window and reload this page.`
 
-      | .
-    li
-      | For reports configured via the Reporting API v1, go to
-      a(href='/v0') /v1
-      | .
   details
     summary HTML bits that help generate violations
     div
