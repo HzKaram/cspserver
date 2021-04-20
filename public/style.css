@@ -18,7 +18,7 @@ h1 {
   line-height: 1.1;
 }
 
-.small, summary {
+.small {
   font-size: 80%;
 }
 
@@ -41,12 +41,17 @@ a, a:visited {
   --background-color: red;
 }
 
-li {
+ul li {
   list-style: none;
 }
 
-li::before {
+ul li::before {
   content: "✔️"
+}
+
+details {
+  font-size: 80%;
+  padding-top: .4rem;
 }
 
 summary {

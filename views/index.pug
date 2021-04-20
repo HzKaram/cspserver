@@ -18,25 +18,28 @@ header
   a(href=`/${otherVersion}`)=otherVersion
   |.
   br
-  br
-  div Upon loading, this page generates one report of each of these types:
-  ul
-    li Permission policy violation
-    li Document policy violation
-    li Deprecation
-    li CSP violation
-    li COEP violation
-    li Browser intervention
-  |       If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this
-  |       page.
-  div
-  a(href=endpoint)=endpoint
-  
-  |       https://intervention-generator.glitch.me/
+  ol
+    li Load this page. Upon loading, this page generates one report of each of these types:
+      ul
+        li Permission policy violation
+        li Document policy violation
+        li Deprecation
+        li CSP violation
+        li COEP violation
+        li Browser intervention
+    li Open or reload 
+      a(href=endpoint)=endpoint
+      |  and see the reports that were generated.
+      
+  div.small ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
+  div.small ☝️ Note: This page has console errors and issues. That's expected: this page tries to violate its own security rules, uses depecrated APIs, and does other bad things for the sake of generating reports.
   details
     summary 💥 Troubleshooting: not seeing all reports?
-    div=`If you're not seeing a deprecation report pop up at ${endpoint}, try to open ${interventionGeneratorUrl} in a different window and reload this page.`
-
+    span=`If you're not seeing a deprecation report, open `
+    a(href=interventionGeneratorUrl)=interventionGeneratorUrl
+    |  in a different window, then reload this page, and finally reload 
+    a(href=endpoint)=endpoint
+    |  to see if the report appears.
   details
     summary HTML bits that help generate violations
     div
