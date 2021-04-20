@@ -44,10 +44,10 @@ app.get("/v0", (request, response) => {
     `require-corp;report-to="main-endpoint"`
   );
 
-  // response.set("Report-To", JSON.stringify({
-  //   max_age: 10886400,
-  //   endpoints: [{ url: `${REPORTING_ENDPOINT}` }]
-  // }));
+  response.set("Report-To", JSON.stringify({
+    max_age: 10886400,
+    endpoints: [{ url: `${REPORTING_ENDPOINT}` }]
+  }));
   response.sendFile(__dirname + "/views/index.html");
 });
 
