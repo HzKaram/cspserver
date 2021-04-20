@@ -1,30 +1,46 @@
-/* this file is loaded by index.html and styles the page */
-
-* {
-  box-sizing: border-box;
-}
-
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
-  line-height: 1.5em;
+  --margin: 2rem;
   --primary-blue: #0034ff;
+  font-family: sans-serif;
+  margin: var(--margin);
+  width: calc(100vw - var(--margin));
+  max-width: calc(50rem - var(--margin));
 }
 
 h1 {
   font-style: italic;
-  color: #373fff;
-  max-width: calc(100% - 5rem);
+  color: var(--primary-blue);
   line-height: 1.1;
+  font-size: 1.8rem;
+  padding-bottom: 1.2rem;
+}
+
+a,
+a:visited {
+  color: var(--primary-blue);
 }
 
 .small {
   font-size: 80%;
+  line-height: 1rem;
 }
 
-a, a:visited {
-  color: var(--primary-blue);
+/* Lists */
+
+li::marker {
+  font-weight: bold;
+  font-size: 133%;
 }
+
+ul li {
+  list-style: none;
+}
+
+ul li::before {
+  content: "✔️";
+}
+
+/* Version badge */
 
 .badge {
   background: var(--background-color);
@@ -41,17 +57,11 @@ a, a:visited {
   --background-color: red;
 }
 
-ul li {
-  list-style: none;
-}
-
-ul li::before {
-  content: "✔️"
-}
+/* Expandable details element */
 
 details {
   font-size: 80%;
-  padding-top: .4rem;
+  padding-top: 0.4rem;
 }
 
 summary {
