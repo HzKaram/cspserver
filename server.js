@@ -28,6 +28,7 @@ app.get("/v1", (request, response) => {
 
   response.render("index", {
     version: "v1",
+    otherVersion: "v0",
     endpoint: `${REPORTING_ENDPOINT}`
   });
 });
@@ -62,6 +63,7 @@ app.get("/v0", (request, response) => {
 
   response.render("index", {
     version: "v0",
+    otherVersion: "v1",
     endpoint: `${REPORTING_ENDPOINT}`
   });
 });

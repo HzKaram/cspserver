@@ -10,9 +10,12 @@ head
   script(src='https://test/script.js' defer='')
 header
   h1 Reporting API demo
-  span Reporting API version: 
-  span.version=`${version}`
-  |       Upon loading, this page generates one report of each of these types:
+  div
+    span Reporting API version: 
+    span(class=`badge ${version}`)=`${version}`
+  span.small=`For a demo of Reporting API ${otherVersion}, go to ` 
+  a(href=`/${otherVersion}`)=otherVersion
+  div Upon loading, this page generates one report of each of these types:
   ul
     li Permission policy violation
     li Document policy violation
@@ -31,8 +34,7 @@ header
   |       https://intervention-generator.glitch.me/
   ul
     li
-      | For reports configured via the Reporting API v0, go to
-      a(href='/v0') /v0
+
       | .
     li
       | For reports configured via the Reporting API v1, go to

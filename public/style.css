@@ -17,6 +17,21 @@ h1 {
   line-height: 1.1;
 }
 
-summary {
+.small, summary {
   font-size: 80%;
+}
+
+.badge {
+  background: var(--background-color);
+  padding: 2px 10px;
+  color: white;
+  border-radius: 12px;
+}
+
+.v1 {
+  --background-color: #0034ff;
+}
+
+.v0 {
+  --background-color: red;
 }
