@@ -14,9 +14,9 @@ header
     span This page uses the  
     span(class=`badge ${version}`)=`Reporting API ${version}`
     |.
-  span.small=`For a demo of Reporting API ${otherVersion}, go to ` 
-  a(href=`/${otherVersion}`)=otherVersion
-  |.
+  div.note=`For a demo of Reporting API ${otherVersion}, go to ` 
+    a(href=`/${otherVersion}`)=otherVersion
+    |.
   br
   ol
     li Load this page. Upon loading, this page generates one report of each of these types:
@@ -31,8 +31,8 @@ header
       a(href=endpoint)=endpoint
       |. See the reports that were generated.
       
-  div.small ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
-  div.small ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things for the sake of generating reports.
+  div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
+  div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
   details
     summary 💥 Troubleshooting: not seeing all reports?
     span=`If you're not seeing a deprecation report, open `

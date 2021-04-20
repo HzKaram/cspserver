@@ -3,8 +3,7 @@ body {
   --primary-blue: #0034ff;
   font-family: sans-serif;
   margin: var(--margin);
-  width: calc(100vw - var(--margin));
-  max-width: calc(50rem - var(--margin));
+  max-width: 50rem;
 }
 
 h1 {
@@ -20,9 +19,10 @@ a:visited {
   color: var(--primary-blue);
 }
 
-.small {
+.note {
   font-size: 80%;
   line-height: 1rem;
+  padding-top: 0.8rem;
 }
 
 /* Lists */
