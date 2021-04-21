@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 
 const REPORTING_ENDPOINT = "https://reports-endpoint.glitch.me/reports";
+const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
+const AUTHOR = "https://twitter.com/maudnals";
 
 app.use(express.static("public"));
 app.set("view engine", "pug");
