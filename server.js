@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 
-const REPORTING_ENDPOINT = "https://reports-endpoint.glitch.me/reports";
+const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
+const REPORTING_ENDPOINT = `${REPORTING_ENDPOINT_BASE}/reports`;
+const REPORTS_THIS = `${REPORTING_ENDPOINT_BASE}/86b9d42c70c79b0ff43435a2f7a94d9c910e07cf0e96e4051b8303c0efbb1ff6`;
+// const REPORTS_INTERVENTION
+
 const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
@@ -67,11 +71,11 @@ app.get("/v0", (request, response) => {
   response.render("index", {
     version: "v0",
     otherVersion: "v1",
-    endpoint: `${REPORTING_ENDPOINT}`,
+    reportsDisplayUrl: `${REPORTS_THIS}`,
     interventionGeneratorUrl: "https://intervention-generator.glitch.me/"
   });
 });
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
-});
+// const listener = app.listen(process.env.PORT, () => {
+//   console.log("Your app is listening on port " + listener.address().port);
+// });

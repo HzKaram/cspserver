@@ -35,7 +35,7 @@ body
           li COEP violation
           li Browser intervention
       li Open or reload 
-        a(href=endpoint)=endpoint
+        a(href=reportsDisplayUrl)=reportsDisplayUrl
         |. See the reports that were generated.
 
     div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
@@ -45,7 +45,7 @@ body
       span=`If you're not seeing a deprecation report, open `
       a(href=interventionGeneratorUrl)=interventionGeneratorUrl
       |  in a different window, then reload this page, and finally reload 
-      a(href=endpoint)=endpoint
+      a(href=reportsDisplayUrl)=reportsDisplayUrl
       |  to see if the report appears.
     details
       summary HTML bits that help generate violations
