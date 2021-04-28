@@ -1,9 +1,28 @@
 const express = require("express");
 const app = express();
+const crypto = require("crypto");
 
 const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
 const REPORTING_ENDPOINT = `${REPORTING_ENDPOINT_BASE}/reports`;
-const REPORTS_THIS = `${REPORTING_ENDPOINT_BASE}/86b9d42c70c79b0ff43435a2f7a94d9c910e07cf0e96e4051b8303c0efbb1ff6`;
+
+const hashUrlThisV1 = crypto
+  .createHash("sha256")
+  .update("https://new-reporting-api-demo.glitch.me/v1")
+  .digest("hex");
+const hashUrlThisV0 = crypto
+  .createHash("sha256")
+  .update("https://new-reporting-api-demo.glitch.me/v0")
+  .digest("hex");
+
+const hashUrlIntervention = crypto
+  .createHash("sha256")
+  .update("https://intervention-generator.glitch.me/")
+  .digest("hex");
+
+const REPORTS_THIS_V1 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV1}`;
+const REPORTS_THIS_V0 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV0}`;
+const REPORTS_OTHER_APP = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlIntervention}`;
+
 // const REPORTS_INTERVENTION
 
 const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
@@ -35,7 +54,8 @@ app.get("/v1", (request, response) => {
   response.render("index", {
     version: "v1",
     otherVersion: "v0",
-    endpoint: `${REPORTING_ENDPOINT}`,
+    reportsDisplayUrl: REPORTS_THIS_V1,
+    otherReportsDisplayUrl: REPORTS_OTHER_APP,
     interventionGeneratorUrl: "https://intervention-generator.glitch.me/"
   });
 });
@@ -71,11 +91,12 @@ app.get("/v0", (request, response) => {
   response.render("index", {
     version: "v0",
     otherVersion: "v1",
-    reportsDisplayUrl: `${REPORTS_THIS}`,
+    reportsDisplayUrl: REPORTS_THIS_V0,
+    otherReportsDisplayUrl: REPORTS_OTHER_APP,
     interventionGeneratorUrl: "https://intervention-generator.glitch.me/"
   });
 });
 
-// const listener = app.listen(process.env.PORT, () => {
-//   console.log("Your app is listening on port " + listener.address().port);
-// });
+const listener = app.listen(process.env.PORT, () => {
+  console.log("Your app is listening on port " + listener.address().port);
+});
