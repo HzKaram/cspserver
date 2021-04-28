@@ -8,44 +8,51 @@ head
   link(rel='stylesheet' href='/style.css')
   script(src='/script.js' defer='')
   script(src='https://test/script.js' defer='')
-header
-  h1 Reporting API demo: 💥 Reports generation page
-  div
-    span This page uses the  
-    span(class=`badge ${version}`)=`Reporting API ${version}`
-    |.
-  div.note=`For a demo of Reporting API ${otherVersion}, go to ` 
-    a(href=`/${otherVersion}`)=otherVersion
-    |.
-  br
-  ol
-    li Load this page. Upon loading, this page generates one report of each of these types:
-      ul
-        li Permission policy violation
-        li Document policy violation
-        li Deprecation
-        li CSP violation
-        li COEP violation
-        li Browser intervention
-    li Open or reload 
-      a(href=endpoint)=endpoint
-      |. See the reports that were generated.
-      
-  div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
-  div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
-  details
-    summary 💥 Troubleshooting: not seeing all reports?
-    span=`If you're not seeing a deprecation report, open `
-    a(href=interventionGeneratorUrl)=interventionGeneratorUrl
-    |  in a different window, then reload this page, and finally reload 
-    a(href=endpoint)=endpoint
-    |  to see if the report appears.
-  details
-    summary HTML bits that help generate violations
+body
+  header
+    h1 Reporting API demo: 💥 Reports generation page
+    div(class="info-banner")
+      a(href="https://glitch.com/edit/#!/new-reporting-api-demo") See the code
+      span   ✦  Questions? Ping 
+        a(href="https://twitter.com/maudnals") maudnals
+        |.
+  main
     div
+      span This page uses the  
+      span(class=`badge ${version}`)=`Reporting API ${version}`
+      |.
+    div.note=`For a demo of Reporting API ${otherVersion}, go to ` 
+      a(href=`/${otherVersion}`)=otherVersion
+      |.
+    br
+    ol
+      li Load this page. Upon loading, this page generates one report of each of these types:
+        ul
+          li Permission policy violation
+          li Document policy violation
+          li Deprecation
+          li CSP violation
+          li COEP violation
+          li Browser intervention
+      li Open or reload 
+        a(href=endpoint)=endpoint
+        |. See the reports that were generated.
+
+    div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
+    div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
+    details
+      summary 💥 Troubleshooting: not seeing all reports?
+      span=`If you're not seeing a deprecation report, open `
+      a(href=interventionGeneratorUrl)=interventionGeneratorUrl
+      |  in a different window, then reload this page, and finally reload 
+      a(href=endpoint)=endpoint
+      |  to see if the report appears.
+    details
+      summary HTML bits that help generate violations
       div
-        | COEP violation generator:
-        img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg')
-      div
-        | Intervention generator:
-        iframe(width='100' height='50' crossorigin='' src='https://intervention-generator.glitch.me/' title='')
+        div
+          | COEP violation generator:
+          img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg')
+        div
+          | Intervention generator:
+          iframe(width='100' height='50' crossorigin='' src='https://intervention-generator.glitch.me/' title='')

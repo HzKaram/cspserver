@@ -10,7 +10,17 @@ h1 {
   font-style: italic;
   line-height: 1.1;
   font-size: 1.8rem;
-  padding-bottom: 1.2rem;
+  padding-bottom: .1rem;
+}
+
+main {
+  padding: 2rem 0;
+}
+
+.info-banner {
+  font-size: .9rem; 
+  background: gainsboro;
+  padding: .4rem;
 }
 
 a,
