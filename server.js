@@ -23,8 +23,6 @@ const REPORTS_THIS_V1 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV1}`;
 const REPORTS_THIS_V0 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV0}`;
 const REPORTS_OTHER_APP = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlIntervention}`;
 
-// const REPORTS_INTERVENTION
-
 const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
