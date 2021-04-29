@@ -7,14 +7,14 @@ head
   title 💥 Reporting API demo
   link(rel='stylesheet' href='/style.css')
   script(src='/script.js' defer='')
-  script(src='https://test/script.js' defer='')
+  script(src='https://example.com/script.js' defer='')
 body
   header
     h1 Reporting API demo: 💥 Reports generation page
     div(class="info-banner")
-      a(href="https://glitch.com/edit/#!/new-reporting-api-demo") See the code
+      a(href=codeUrl) See the code
       span   ✦  Questions? Ping 
-        a(href="https://twitter.com/maudnals") maudnals
+        a(href=author) maudnals
         |.
   main
     div
@@ -36,11 +36,7 @@ body
           li Browser intervention
       li Open or reload 
         a(href=reportsDisplayUrl)=reportsDisplayUrl
-        |  to see all reports. Except for the intervention report: you can see it at 
-        a(href=otherReportsDisplayUrl)=otherReportsDisplayUrl
-        |. That's because in this demo, the intervention report is generated in a frame,  
-        | so its `url` field will be different from other reports' `url` field.
-        | This is why you need a different URL to access it.
+        |  to see all reports.
 
     div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
     div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
@@ -49,7 +45,7 @@ body
       span=`If you're not seeing a deprecation report, open `
       a(href=interventionGeneratorUrl)=interventionGeneratorUrl
       |  in a different window, then reload this page, and finally reload 
-      a(href=otherReportsDisplayUrl)=otherReportsDisplayUrl
+      a(href=reportsDisplayUrl)=reportsDisplayUrl
       |  to see if the report appears.
     details
       summary HTML bits that help generate violations
@@ -59,4 +55,4 @@ body
           img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg')
         div
           | Intervention generator:
-          iframe(width='100' height='50' crossorigin='' src='https://intervention-generator.glitch.me/' title='')
+          iframe(width='100' height='50' crossorigin='' src=`${interventionGeneratorUrl}` title='')

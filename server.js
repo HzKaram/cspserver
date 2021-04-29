@@ -5,7 +5,7 @@ const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
 const REPORTS_POST_URL = `${REPORTING_ENDPOINT_BASE}/reports`;
 const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
-const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
+const CODE_URL = "https://glitch.com/edit/#!/new-reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
 app.use(express.static("public"));
@@ -41,7 +41,9 @@ app.get("/v1", (request, response) => {
     version: "v1",
     otherVersion: "v0",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL
+    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
+    codeUrl: CODE_URL,
+    author: AUTHOR
   });
 });
 
@@ -62,7 +64,9 @@ app.get("/v0", (request, response) => {
     version: "v0",
     otherVersion: "v1",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL
+    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
+    codeUrl: CODE_URL,
+    author: AUTHOR
   });
 });
 
