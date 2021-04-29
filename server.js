@@ -3,28 +3,30 @@ const app = express();
 const crypto = require("crypto");
 
 const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
-const REPORTING_ENDPOINT = `${REPORTING_ENDPOINT_BASE}/reports`;
-
-const hashUrlThisV1 = crypto
-  .createHash("sha256")
-  .update("https://new-reporting-api-demo.glitch.me/v1")
-  .digest("hex");
-const hashUrlThisV0 = crypto
-  .createHash("sha256")
-  .update("https://new-reporting-api-demo.glitch.me/v0")
-  .digest("hex");
-
-const hashUrlIntervention = crypto
-  .createHash("sha256")
-  .update("https://intervention-generator.glitch.me/")
-  .digest("hex");
-
-const REPORTS_THIS_V1 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV1}`;
-const REPORTS_THIS_V0 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV0}`;
-const REPORTS_OTHER_APP = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlIntervention}`;
-
+const REPORTS_POST_URL = `${REPORTING_ENDPOINT_BASE}/reports`;
+const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
+const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
 const CODE = "https://glitch.com/edit/#!/new-reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
+
+// const hashUrlThisV1 = crypto
+//   .createHash("sha256")
+//   .update("https://new-reporting-api-demo.glitch.me/v1")
+//   .digest("hex");
+// const hashUrlThisV0 = crypto
+//   .createHash("sha256")
+//   .update("https://new-reporting-api-demo.glitch.me/v0")
+//   .digest("hex");
+
+// const hashUrlIntervention = crypto
+//   .createHash("sha256")
+//   .update("https://intervention-generator.glitch.me/")
+//   .digest("hex");
+
+
+// const REPORTS_THIS_V1 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV1}`;
+// const REPORTS_THIS_V0 = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlThisV0}`;
+// const REPORTS_OTHER_APP = `${REPORTING_ENDPOINT_BASE}?appid=${hashUrlIntervention}`;
 
 app.use(express.static("public"));
 app.set("view engine", "pug");
@@ -46,15 +48,14 @@ app.get("/v1", (request, response) => {
 
   response.set(
     "Reporting-Endpoints",
-    `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`
+    `main-endpoint="${REPORTS_POST_URL}", default="${REPORTS_POST_URL}"`
   );
 
   response.render("index", {
     version: "v1",
     otherVersion: "v0",
-    reportsDisplayUrl: REPORTS_THIS_V1,
-    otherReportsDisplayUrl: REPORTS_OTHER_APP,
-    interventionGeneratorUrl: "https://intervention-generator.glitch.me/"
+    reportsDisplayUrl: REPORTS_DISPLAY_URL,
+    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL
   });
 });
 
@@ -73,25 +74,24 @@ app.get("/v0", (request, response) => {
     `require-corp;report-to="main-endpoint"`
   );
 
-  const x = JSON.stringify({
+  const mainEndpoint = JSON.stringify({
     group: "main-endpoint",
     max_age: 10886400,
-    endpoints: [{ url: `${REPORTING_ENDPOINT}` }]
+    endpoints: [{ url: `${REPORTS_POST_URL}` }]
   });
 
-  const y = JSON.stringify({
+  const defaultEndpoint = JSON.stringify({
     max_age: 10886400,
-    endpoints: [{ url: `${REPORTING_ENDPOINT}` }]
+    endpoints: [{ url: `${REPORTS_POST_URL}` }]
   });
 
-  response.set("Report-To", `${x}, ${y}`);
+  response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
 
   response.render("index", {
     version: "v0",
     otherVersion: "v1",
-    reportsDisplayUrl: REPORTS_THIS_V0,
-    otherReportsDisplayUrl: REPORTS_OTHER_APP,
-    interventionGeneratorUrl: "https://intervention-generator.glitch.me/"
+    reportsDisplayUrl: REPORTS_DISPLAY_URL,
+    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL
   });
 });
 
