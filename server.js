@@ -15,9 +15,8 @@ app.get("/", (request, response) => {
   response.redirect("/v1");
 });
 
-app.get("/v1", (request, response) => {
-  
-  // Set the policy and rules that will generate reports when violated
+// Middleware that sets for all requests the policy and rules that will generate reports when violated
+app.use(function(request, response, next) {
   response.set(
     "Content-Security-Policy",
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
@@ -28,13 +27,15 @@ app.get("/v1", (request, response) => {
     "Cross-Origin-Embedder-Policy",
     `require-corp;report-to="main-endpoint"`
   );
+  next();
+});
 
-  // Set the endpoints (API V0)
+app.get("/v1", (request, response) => {
+  // Set the endpoints (API V1)
   response.set(
     "Reporting-Endpoints",
     `main-endpoint="${REPORTS_POST_URL}", default="${REPORTS_POST_URL}"`
   );
-
   // Send the response
   response.render("index", {
     version: "v1",
@@ -45,19 +46,6 @@ app.get("/v1", (request, response) => {
 });
 
 app.get("/v0", (request, response) => {
-  
-  // Set the policy and rules that will generate reports when violated
-  response.set(
-    "Content-Security-Policy",
-    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
-  );
-  response.set("Permissions-Policy", `microphone=()`);
-  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
-  response.set(
-    "Cross-Origin-Embedder-Policy",
-    `require-corp;report-to="main-endpoint"`
-  );
-
   // Set the endpoints (API V0)
   const mainEndpoint = JSON.stringify({
     group: "main-endpoint",
@@ -69,7 +57,6 @@ app.get("/v0", (request, response) => {
     endpoints: [{ url: `${REPORTS_POST_URL}` }]
   });
   response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
-
   // Send the response
   response.render("index", {
     version: "v0",
