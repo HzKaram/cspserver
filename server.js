@@ -19,7 +19,7 @@ app.get("/", (request, response) => {
 app.use(function(request, response, next) {
   response.set(
     "Content-Security-Policy",
-    `script-src 'self'; object-src 'none'; report-to default;`
+    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
   response.set("Permissions-Policy", `microphone=()`);
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
