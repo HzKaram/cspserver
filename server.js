@@ -17,16 +17,16 @@ app.get("/", (request, response) => {
 
 // Middleware that sets for all requests the policy and rules that will generate reports when violated
 app.use(function(request, response, next) {
-  // response.set(
-  //   "Content-Security-Policy",
-  //   `script-src 'self'; object-src 'none'; report-to main-endpoint;`
-  // );
+  response.set(
+    "Content-Security-Policy",
+    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
+  );
   response.set("Permissions-Policy", `microphone=()`);
-  // response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
-  // response.set(
-  //   "Cross-Origin-Embedder-Policy",
-  //   `require-corp;report-to="main-endpoint"`
-  // );
+  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
+  response.set(
+    "Cross-Origin-Embedder-Policy",
+    `require-corp;report-to="main-endpoint"`
+  );
   next();
 });
 
