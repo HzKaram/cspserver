@@ -60,11 +60,6 @@ app.get("/v0", (request, response) => {
   });
   response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
 
-  response.set(
-    "Reporting-Endpoints",
-    `main-endpoint="${REPORTS_POST_URL}", default="${REPORTS_POST_URL}"`
-  );
-
   // Send the response
   response.render("index", {
     version: "v0",
