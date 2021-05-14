@@ -54,7 +54,7 @@ body
       |  in a different window, then reload this page, and finally reload 
       a(href=reportsDisplayUrl)=reportsDisplayUrl
       |  to see if the report appears.
-    details
+    details(open=true)
       summary HTML bits that help generate violations
       div
         div
@@ -62,4 +62,4 @@ body
           img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg')
         div
           | Intervention generator:
-          iframe(width='100' height='50' crossorigin='' src=`${interventionGeneratorUrl}` title='')
+          iframe(width='10' height='5' crossorigin='' src=`${interventionGeneratorUrl}` title='')
