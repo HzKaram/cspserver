@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 
 const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
-const REPORTS_POST_URL = `${REPORTING_ENDPOINT_BASE}/reports`;
+const REPORTING_ENDPOINT_MAIN = `${REPORTING_ENDPOINT_BASE}/main`;
+const REPORTING_ENDPOINT_DEFAULT= `${REPORTING_ENDPOINT_BASE}/default`;
 const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
@@ -34,7 +35,7 @@ app.get("/v1", (request, response) => {
   // Set the endpoints (API V1)
   response.set(
     "Reporting-Endpoints",
-    `main-endpoint="${REPORTS_POST_URL}", default="${REPORTS_POST_URL}"`
+    `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
   // Send the response
   response.render("index", {
@@ -52,11 +53,11 @@ app.get("/v0", (request, response) => {
   const mainEndpoint = JSON.stringify({
     group: "main-endpoint",
     max_age: 10886400,
-    endpoints: [{ url: `${REPORTS_POST_URL}` }]
+    endpoints: [{ url: `${REPORTING_ENDPOINT_MAIN}` }]
   });
   const defaultEndpoint = JSON.stringify({
     max_age: 10886400,
-    endpoints: [{ url: `${REPORTS_POST_URL}` }]
+    endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
   });
   response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
 
