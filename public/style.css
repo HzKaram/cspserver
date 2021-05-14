@@ -33,6 +33,19 @@ a:visited {
   padding-top: 0.8rem;
 }
 
+.aside {
+  margin: .4rem 0;
+  line-height: 1rem;
+}
+
+.warning {
+  color: #db7900;
+}
+
+.error {
+  color: #cd0000;
+}
+
 /* Lists */
 
 li::marker {

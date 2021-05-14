@@ -3,7 +3,7 @@ head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   meta(name='viewport' content='width=device-width, initial-scale=1')
-  meta(name='description' content='A cool thing made with Glitch')
+  meta(name='description' content='Reporting API demo')
   title 💥 Reporting API demo
   link(rel='stylesheet' href='/style.css')
   script(src='/script.js' defer='')
@@ -16,9 +16,13 @@ body
       span   ✦  Questions? Ping 
         a(href=author) maudnals
         |.
-        div.aside.error
-          | Run this demo in Chrome, version 91 or later (check via chrome://version). 
-          | Optional: run it with the flag --short-reporting-delay.
+      div.aside.error
+        | Run this demo in Chrome, version 91 or later (check via chrome://version). 
+        | Optional: use the flag --short-reporting-delay.
+      div.aside
+        | The Reporting API is a generic framework to allow reporting for web platform features. 
+        | This demo runs code that deliberately violates policies and does other bad things that will generate reports. 
+        | The policies are set in headers, along with a reporting endpoint.
   main
     div
       span This page uses the  
