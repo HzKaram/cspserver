@@ -16,8 +16,29 @@ app.get("/", (request, response) => {
   response.redirect("/page");
 });
 
-// Middleware that sets for all requests the policy and rules that will generate reports when violated
+// Middleware that sets the reporting endpoint for *all* requests
+// As well as the policy and rules that will generate reports when violated
 app.use(function(request, response, next) {
+  // Set the endpoints (API V1)
+  response.set(
+    "Reporting-Endpoints",
+    `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
+  );
+
+  // Set the endpoints (API V0)
+  // ONLY IF YOU ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
+  // const mainEndpoint = JSON.stringify({
+  //   group: "main-endpoint",
+  //   max_age: 10886400,
+  //   endpoints: [{ url: `${REPORTING_ENDPOINT_MAIN}` }]
+  // });
+  // const defaultEndpoint = JSON.stringify({
+  //   max_age: 10886400,
+  //   endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
+  // });
+  // response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
+
+  // Set the rules and policies (these will get violated for the demo)
   response.set(
     "Content-Security-Policy",
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
@@ -26,35 +47,16 @@ app.use(function(request, response, next) {
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
   response.set(
     "Cross-Origin-Embedder-Policy",
-    `require-corp;report-to="main-endpoint"`
+    `require-corp`
   );
 
-  // Set the endpoints (API V1)
-  response.set(
-    "Reporting-Endpoints",
-    `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
-  );
-
-  // Set the endpoints (API V0)
-  const mainEndpoint = JSON.stringify({
-    group: "main-endpoint",
-    max_age: 10886400,
-    endpoints: [{ url: `${REPORTING_ENDPOINT_MAIN}` }]
-  });
-  const defaultEndpoint = JSON.stringify({
-    max_age: 10886400,
-    endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
-  });
-  response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
-
+  // ;report-to="main-endpoint"
   next();
 });
 
 app.get("/page", (request, response) => {
-  // Send the response
   response.render("index", {
     version: "v1",
-    otherVersion: "v0",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
     interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,

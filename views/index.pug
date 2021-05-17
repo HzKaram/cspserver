@@ -28,9 +28,6 @@ body
       span This page uses the  
       span(class=`badge ${version}`)=`Reporting API ${version}`
       |.
-    div.note=`For a demo of Reporting API ${otherVersion}, go to ` 
-      a(href=`/${otherVersion}`)=otherVersion
-      |.
     br
     ol
       li Load this page. Upon loading, this page generates one report of each of these types (if supported by the browser):
@@ -59,7 +56,7 @@ body
       div
         div
           | COEP violation generator:
-          img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?cs=srgb&dl=pexels-lone-jensen-2156311.jpg&fm=jpg' width="10")
+          img(src='https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg' width="10")
         div
           | Intervention generator:
           iframe(width='10' height='5' crossorigin='' src=`${interventionGeneratorUrl}` title='')
