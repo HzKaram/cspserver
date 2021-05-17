@@ -3,7 +3,7 @@ const app = express();
 
 const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
 const REPORTING_ENDPOINT_MAIN = `${REPORTING_ENDPOINT_BASE}/main`;
-const REPORTING_ENDPOINT_DEFAULT= `${REPORTING_ENDPOINT_BASE}/default`;
+const REPORTING_ENDPOINT_DEFAULT = `${REPORTING_ENDPOINT_BASE}/default`;
 const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.set("view engine", "pug");
 
 app.get("/", (request, response) => {
-  response.redirect("/v1");
+  response.redirect("/page");
 });
 
 // Middleware that sets for all requests the policy and rules that will generate reports when violated
@@ -28,27 +28,13 @@ app.use(function(request, response, next) {
     "Cross-Origin-Embedder-Policy",
     `require-corp;report-to="main-endpoint"`
   );
-  next();
-});
 
-app.get("/v1", (request, response) => {
   // Set the endpoints (API V1)
   response.set(
     "Reporting-Endpoints",
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
-  // Send the response
-  response.render("index", {
-    version: "v1",
-    otherVersion: "v0",
-    reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
-    codeUrl: CODE_URL,
-    author: AUTHOR
-  });
-});
 
-app.get("/v0", (request, response) => {
   // Set the endpoints (API V0)
   const mainEndpoint = JSON.stringify({
     group: "main-endpoint",
@@ -61,10 +47,14 @@ app.get("/v0", (request, response) => {
   });
   response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
 
+  next();
+});
+
+app.get("/page", (request, response) => {
   // Send the response
   response.render("index", {
-    version: "v0",
-    otherVersion: "v1",
+    version: "v1",
+    otherVersion: "v0",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
     interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,
