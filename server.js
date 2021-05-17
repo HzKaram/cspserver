@@ -47,9 +47,9 @@ app.use(function(request, response, next) {
   response.set(
     "Cross-Origin-Embedder-Policy",
     `require-corp`
+    // ;report-to="main-endpoint"
   );
 
-  // ;report-to="main-endpoint"
   next();
 });
 
