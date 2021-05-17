@@ -24,18 +24,8 @@ app.use(function(request, response, next) {
     "Reporting-Endpoints",
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
-
-  // Set the endpoints (API V0)
-  // ONLY IF YOU ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
-  // const mainEndpoint = JSON.stringify({
-  //   group: "main-endpoint",
-  //   max_age: 10886400,
-  //   endpoints: [{ url: `${REPORTING_ENDPOINT_MAIN}` }]
-  // });
-  // const defaultEndpoint = JSON.stringify({
-  //   max_age: 10886400,
-  //   endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
-  // });
+  
+  // KEEP Report-To IF YOU'RE MIGRATING AND ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
   // response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
 
   // Set the rules and policies (these will get violated for the demo)
