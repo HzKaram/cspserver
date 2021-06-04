@@ -16,8 +16,9 @@ app.get("/", (request, response) => {
   response.redirect("/page");
 });
 
-// Middleware that sets the reporting endpoint for *all* requests
-// As well as the policy and rules that will generate reports when violated
+// Middleware that sets 
+// * the reporting endpoint for *all* requests
+// * the policy and rules that will generate reports when violated
 app.use(function(request, response, next) {
   // Set the endpoints (API V1)
   response.set(
@@ -25,7 +26,7 @@ app.use(function(request, response, next) {
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
 
-  // KEEP Report-To IF YOU'RE MIGRATING AND ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
+  // KEEP this ⤵️ with Report-To IF YOU'RE MIGRATING AND ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
   // const mainEndpoint = JSON.stringify({
   //   group: "main-endpoint",
   //   max_age: 10886400,
@@ -42,12 +43,13 @@ app.use(function(request, response, next) {
     "Content-Security-Policy",
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
-  response.set("Permissions-Policy", `microphone=()`);
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
   response.set(
     "Cross-Origin-Embedder-Policy",
     `require-corp;report-to="main-endpoint"`
   );
+  // experimental
+  response.set("Permissions-Policy", `microphone=()`);
 
   next();
 });
