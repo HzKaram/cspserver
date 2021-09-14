@@ -49,13 +49,10 @@ app.use(function(request, response, next) {
     `require-corp;report-to="main-endpoint"`
   );
   
-    response.set(
+  response.set(
     "Cross-Origin-Opener-Policy",
-    `same-origin`
+    `"same-origin"`
   );
-  
-  Cross-Origin-Opener-Policy: same-origin
-  
   
   // experimental
   response.set("Permissions-Policy", `microphone=()`);
