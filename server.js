@@ -48,6 +48,15 @@ app.use(function(request, response, next) {
     "Cross-Origin-Embedder-Policy",
     `require-corp;report-to="main-endpoint"`
   );
+  
+    response.set(
+    "Cross-Origin-Opener-Policy",
+    `same-origin`
+  );
+  
+  Cross-Origin-Opener-Policy: same-origin
+  
+  
   // experimental
   response.set("Permissions-Policy", `microphone=()`);
 
