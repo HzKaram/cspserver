@@ -44,15 +44,22 @@ app.use(function(request, response, next) {
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
-  response.set(
-    "Cross-Origin-Embedder-Policy",
-    `require-corp;report-to="main-endpoint"`
-  );
+  // response.set(
+  //   "Cross-Origin-Embedder-Policy",
+  //   `require-corp;report-to="main-endpoint"`
+  // );
   
   response.set(
     "Cross-Origin-Opener-Policy",
-    `"same-origin"`
+    `same-origin; report-to="main-endpoint`
   );
+  
+  response.set(
+    "Cross-Origin-Embedder-Policy",
+    `same-origin; report-to="main-endpoint`
+  );
+  
+  
   
   // experimental
   response.set("Permissions-Policy", `microphone=()`);
