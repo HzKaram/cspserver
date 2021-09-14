@@ -26,7 +26,7 @@ app.use(function(request, response, next) {
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
 
-  // KEEP this ⤵️ with Report-To (v0) IF YOU'RE MIGRATING AND ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
+  // KEEP this ⤵️ with Report-To (v0) IF YOU ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
   // const mainEndpoint = JSON.stringify({
   //   group: "main-endpoint",
   //   max_age: 10886400,
