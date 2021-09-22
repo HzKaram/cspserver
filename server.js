@@ -8,6 +8,7 @@ const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
+const COEP_GENERATOR_URL = "https://coop-report-generator.glitch.me/";
 
 app.use(express.static("public"));
 app.set("view engine", "pug");
@@ -48,17 +49,17 @@ app.use(function(request, response, next) {
   // but only the violator will get the report!
   response.set(
     "Cross-Origin-Opener-Policy",
-    `same-origin; report-to="main-endpoint"`
+    `unsafe-none; report-to="main-endpoint"`
   );
   // response.set(
   //   "Reporting-Endpoints",
   //   `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`
   // );
 
-  // response.set(
-  //   "Cross-Origin-Embedder-Policy",
-  //   `require-corp;report-to="main-endpoint"`
-  // );
+  response.set(
+    "Cross-Origin-Embedder-Policy",
+    `require-corp;report-to="main-endpoint"`
+  );
 
   //   response.set(
   //     "Cross-Origin-Opener-Policy",
@@ -80,6 +81,7 @@ app.get("/page", (request, response) => {
   response.render("index", {
     version: "v1",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
+    coepGeneratorUrl: COEP_GENERATOR_URL,
     interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,
     author: AUTHOR
