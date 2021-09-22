@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
   response.redirect("/page");
 });
 
-// Middleware that sets 
+// Middleware that sets
 // * the reporting endpoint for *all* requests
 // * the policy and rules that will generate reports when violated
 app.use(function(request, response, next) {
@@ -44,23 +44,32 @@ app.use(function(request, response, next) {
     `script-src 'self'; object-src 'none'; report-to main-endpoint;`
   );
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
+
+  // but only the violator will get the report!
+  response.set(
+    "Cross-Origin-Opener-Policy",
+    `same-origin; report-to="main-endpoint"`
+  );
+  // response.set(
+  //   "Reporting-Endpoints",
+  //   `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`
+  // );
+
   // response.set(
   //   "Cross-Origin-Embedder-Policy",
   //   `require-corp;report-to="main-endpoint"`
   // );
-  
-  response.set(
-    "Cross-Origin-Opener-Policy",
-    `same-origin; report-to="main-endpoint`
-  );
-  
-  response.set(
-    "Cross-Origin-Embedder-Policy",
-    `same-origin; report-to="main-endpoint`
-  );
-  
-  
-  
+
+  //   response.set(
+  //     "Cross-Origin-Opener-Policy",
+  //     `same-origin; report-to="main-endpoint`
+  //   );
+
+  //   response.set(
+  //     "Cross-Origin-Embedder-Policy",
+  //     `same-origin; report-to="main-endpoint`
+  //   );
+
   // experimental
   response.set("Permissions-Policy", `microphone=()`);
 
