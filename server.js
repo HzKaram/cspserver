@@ -27,6 +27,17 @@ app.use(function(request, response, next) {
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
 
+  // const mainEndpoint = JSON.stringify({
+  //   group: "main-endpoint",
+  //   max_age: 10886400,
+  //   endpoints: [{ url: `${REPORTING_ENDPOINT_MAIN}` }]
+  // });
+  // const defaultEndpoint = JSON.stringify({
+  //   max_age: 10886400,
+  //   endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
+  // });
+  // response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
+
   // KEEP this ⤵️ with Report-To (v0) IF YOU ALREADY HAVE REPORTING FUNCTIONALITY IN YOUR CODE
   // const mainEndpoint = JSON.stringify({
   //   group: "main-endpoint",
