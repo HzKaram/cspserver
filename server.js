@@ -47,10 +47,10 @@ app.use(function(request, response, next) {
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
 
   // but only the violator will get the report!
-  response.set(
-    "Cross-Origin-Opener-Policy",
-    `unsafe-none; report-to="main-endpoint"`
-  );
+  // response.set(
+  //   "Cross-Origin-Opener-Policy",
+  //   `unsafe-none; report-to="main-endpoint"`
+  // );
 
   response.set(
     "Cross-Origin-Embedder-Policy",

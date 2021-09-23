@@ -7,7 +7,7 @@ const popup = window.open(
   "width=420, height=420"
 );
 console.log(popup);
-popup.postMessage("test", "https://coop-report-generator.glitch.me/");
+popup.postMessage("test", "*");
 
 // Deprecation
 window.webkitStorageInfo;
