@@ -8,7 +8,7 @@ const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
-const COEP_GENERATOR_URL = "https://coop-report-generator.glitch.me/";
+const COOP_GENERATOR_URL = "https://coop-report-generator.glitch.me/";
 
 app.use(express.static("public"));
 app.set("view engine", "pug");
@@ -18,8 +18,8 @@ app.get("/", (request, response) => {
 });
 
 // Middleware that sets
-// * the reporting endpoint for *all* requests
-// * the policy and rules that will generate reports when violated
+// - the reporting endpoint for *all* requests
+// - the policy and rules that will generate reports when violated
 app.use(function(request, response, next) {
   // Set the endpoints (API V1)
   response.set(
@@ -46,7 +46,6 @@ app.use(function(request, response, next) {
   );
   response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
 
-  // but only the violator will get the report!
   // response.set(
   //   "Cross-Origin-Opener-Policy",
   //   `unsafe-none; report-to="main-endpoint"`
@@ -77,7 +76,7 @@ app.get("/page", (request, response) => {
   response.render("index", {
     version: "v1",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    coepGeneratorUrl: COEP_GENERATOR_URL,
+    coopGeneratorUrl: COOP_GENERATOR_URL,
     interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,
     author: AUTHOR

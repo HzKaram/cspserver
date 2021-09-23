@@ -2,6 +2,7 @@ console.log("hello world :o");
 
 // COOP
 const popup = window.open(
+  // TODO pass this as a variable
   "https://coop-report-generator.glitch.me/",
   "popup",
   "width=420, height=420"
