@@ -52,10 +52,10 @@ app.use(function(request, response, next) {
   //   `unsafe-none; report-to="main-endpoint"`
   // );
 
-  response.set(
-    "Cross-Origin-Embedder-Policy",
-    `require-corp;report-to="main-endpoint"`
-  );
+  // response.set(
+  //   "Cross-Origin-Embedder-Policy",
+  //   `require-corp;report-to="main-endpoint"`
+  // );
 
   //   response.set(
   //     "Cross-Origin-Opener-Policy",
