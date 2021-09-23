@@ -21,7 +21,7 @@ try {
   console.log(e);
 }
 
-// 
+// Browser intervention
 window.navigator.vibrate(1);
 
 // Experimental: permissions policy violation

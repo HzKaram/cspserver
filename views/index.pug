@@ -49,9 +49,5 @@ body
       li Open or reload 
         a(href=reportsDisplayUrl)=reportsDisplayUrl
         |  to see all reports.
-
     div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
     div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
-    div
-      | Intervention generator:
-      iframe(width='10' height='5' crossorigin='' src=`${interventionGeneratorUrl}` title='')
