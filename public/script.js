@@ -1,13 +1,14 @@
 console.log("hello world :o");
 
 // COOP violation
+// A popup is opened isolated
 const popup = window.open(
   "https://coop-report-generator.glitch.me/",
   "popup",
   "width=420, height=420"
 );
 // console.log(popup);
-// popup.postMessage('test', '*'); 
+popup.postMessage('test', '*'); 
 
 // Deprecation
 window.webkitStorageInfo;
