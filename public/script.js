@@ -21,5 +21,8 @@ try {
   console.log(e);
 }
 
+// 
+window.navigator.vibrate(1);
+
 // Experimental: permissions policy violation
 navigator.mediaDevices.getUserMedia({ audio: true }).catch(e => {});

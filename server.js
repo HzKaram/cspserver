@@ -8,7 +8,6 @@ const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const INTERVENTION_GENERATOR_URL = "https://intervention-report-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
-const COOP_GENERATOR_URL = "https://coop-report-generator.glitch.me/";
 
 app.use(express.static("public"));
 app.set("view engine", "pug");
@@ -59,7 +58,6 @@ app.get("/page", (request, response) => {
   response.render("index", {
     version: "v1",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    coopGeneratorUrl: COOP_GENERATOR_URL,
     interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,
     author: AUTHOR
