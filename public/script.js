@@ -7,7 +7,7 @@ const popup = window.open(
   "popup",
   "width=420, height=420"
 );
-// console.log(popup);
+console.log(popup);
 popup.postMessage('test', '*'); 
 
 // Deprecation
