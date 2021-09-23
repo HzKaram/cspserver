@@ -51,10 +51,6 @@ app.use(function(request, response, next) {
     "Cross-Origin-Opener-Policy",
     `unsafe-none; report-to="main-endpoint"`
   );
-  // response.set(
-  //   "Reporting-Endpoints",
-  //   `main-endpoint="${REPORTING_ENDPOINT}", default="${REPORTING_ENDPOINT}"`
-  // );
 
   response.set(
     "Cross-Origin-Embedder-Policy",

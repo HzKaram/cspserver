@@ -6,8 +6,8 @@ const popup = window.open(
   "popup",
   "width=420, height=420"
 );
-console.log(popup);
-popup.postMessage('test', '*'); 
+// console.log(popup);
+// popup.postMessage('test', '*'); 
 
 // Deprecation
 window.webkitStorageInfo;
