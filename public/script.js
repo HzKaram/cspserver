@@ -9,7 +9,11 @@ const popup = window.open(
 );
 // TODO: why doesn't this ⤵️ generate a report of type "access-to-coop-page-from-opener"
 console.log(popup);
-popup.postMessage("test", "*");
+// ! too early on n'a pas fait la navigation
+
+setTimeout(() => {
+  popup.postMessage("test", "*");
+}, 3000)
 
 // Deprecation
 window.webkitStorageInfo;
