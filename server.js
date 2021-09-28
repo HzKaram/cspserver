@@ -5,7 +5,6 @@ const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
 const REPORTING_ENDPOINT_MAIN = `${REPORTING_ENDPOINT_BASE}/main`;
 const REPORTING_ENDPOINT_DEFAULT = `${REPORTING_ENDPOINT_BASE}/default`;
 const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
-const INTERVENTION_GENERATOR_URL = "https://intervention-report-generator.glitch.me/";
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
@@ -58,7 +57,6 @@ app.get("/page", (request, response) => {
   response.render("index", {
     version: "v1",
     reportsDisplayUrl: REPORTS_DISPLAY_URL,
-    interventionGeneratorUrl: INTERVENTION_GENERATOR_URL,
     codeUrl: CODE_URL,
     author: AUTHOR
   });
