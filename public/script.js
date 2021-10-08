@@ -1,17 +1,15 @@
-console.log("hello world :o");
+const COOP_REPORT_URL = "https://coop-report-generator.glitch.me/";
 
 // COOP
 const popup = window.open(
-  // TODO pass this as a variable
-  "https://coop-report-generator.glitch.me/",
+  COOP_REPORT_URL,
   "popup",
   "width=420, height=420"
 );
-// TODO: why doesn't this ⤵️ generate a report of type "access-to-coop-page-from-opener"
 console.log(popup);
-// ! too early on n'a pas fait la navigation
-
 setTimeout(() => {
+  // "hack" to generate the report: need to use setTimeout to wait for the navigation before calling postMessage
+  // (this generates a report of type "access-to-coop-page-from-opener")
   popup.postMessage("test", "*");
 }, 3000)
 

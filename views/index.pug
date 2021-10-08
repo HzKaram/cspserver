@@ -22,9 +22,10 @@ body
         | See the policies in the code's server.js file.
       div.aside.error
         | Run this demo in Chrome, version 96 or later (check via chrome://version). 
-        | Optionally, to receive reports faster as you're experimenting with this demo, run Chrome with the flag --short-reporting-delay. ⚠️ This flag is not 
+      div.aside
+        | Optionally, to receive reports faster as you're experimenting with this demo, run Chrome with the flag --short-reporting-delay. This flag is not 
         | available via the Chrome UI, it's a command line flag only. See  
-        a(href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags") How to run Chromium with flags
+        a(href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags") how to run Chromium with flags
         |.
   main
     div
@@ -33,21 +34,16 @@ body
       |.
     br
     ol
-      li Open 
-        code chrome://flags/#enable-experimental-web-platform-features
-        | , 
-        strong Enable 
-        | this flag and restart Chrome.
       li Load this page. Upon loading, this page generates one report of each of these types (if supported by the browser):
         ul
-          li Document policy violation
-          li Deprecation
           li CSP violation
-          li COOP violation
-          li Browser intervention
-          li (Experimental: permissions policy violation)
+          li Deprecation
+          li Document policy violation
+          li Intervention
+          li Permissions policy violation (experimental)
+        
       li Open or reload 
         a(href=reportsDisplayUrl)=reportsDisplayUrl
         |  to see all reports.
     div.note ☝️ Note: If you want to generate a crash report, you'll need to do it manually: type chrome://crash/ in your browser from this page.
-    div.note ☝️ Note: This page has console errors and issues. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
+    div.note ☝️ Note: This page has console errors and issues 💥. That's expected: it tries to violate its own security rules, uses deprecated APIs, and does other bad things in order to generate reports.
