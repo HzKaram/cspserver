@@ -48,10 +48,10 @@ a:visited {
 
 /* Lists */
 
-li::marker {
+/* li::marker {
   font-weight: bold;
   font-size: 133%;
-}
+} */
 
 ul li {
   list-style: none;
