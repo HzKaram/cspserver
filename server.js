@@ -34,7 +34,8 @@ app.use(function(request, response, next) {
     "Reporting-Endpoints",
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
-  // Set the endpoints (API v0) - ❌ Not needed here since we're using the API v1
+  // Set the endpoints (API v0)
+  // ❌ Not needed here since we're using the API v1
   // const mainEndpoint = JSON.stringify({
   //   group: "main-endpoint",
   //   max_age: 10886400,
