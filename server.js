@@ -16,17 +16,25 @@ app.get("/", (request, response) => {
 });
 
 // Middleware that sets
-// - the reporting endpoint for *all* requests
 // - the policy and rules that will generate reports when violated
+// - the reporting endpoint for *all* requests
 app.use(function(request, response, next) {
 
-  // Set the endpoints (API V1)
+  // Set the rules and policies (these will get violated for the demo)
+  response.set(
+    "Content-Security-Policy",
+    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
+  );
+  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
+  // experimental
+  response.set("Permissions-Policy", `microphone=()`);
+  
+  // Set the endpoints (API v1)
   response.set(
     "Reporting-Endpoints",
     `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
   );
-
-  // API v0 ⤵️ 
+  // Set the endpoints (API v0) - ❌ Not needed here since we're using the API v1
   // const mainEndpoint = JSON.stringify({
   //   group: "main-endpoint",
   //   max_age: 10886400,
@@ -37,18 +45,6 @@ app.use(function(request, response, next) {
   //   endpoints: [{ url: `${REPORTING_ENDPOINT_DEFAULT}` }]
   // });
   // response.set("Report-To", `${mainEndpoint}, ${defaultEndpoint}`);
-
-  // Set the rules and policies (these will get violated for the demo)
-  
-  response.set(
-    "Content-Security-Policy",
-    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
-  );
-  
-  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
-
-  // experimental
-  response.set("Permissions-Policy", `microphone=()`);
 
   next();
 });
