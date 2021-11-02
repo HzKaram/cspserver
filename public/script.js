@@ -15,6 +15,7 @@ setTimeout(() => {
 
 // Deprecation
 window.webkitStorageInfo;
+console.log(navigator.userAgent);
 
 // Document policy violation
 try {
