@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const REPORTING_ENDPOINT_BASE = "https://reports-endpoint.glitch.me";
+const REPORTING_ENDPOINT_BASE = "https://1e4pabslw2.execute-api.eu-central-1.amazonaws.com/latest";
 const REPORTING_ENDPOINT_MAIN = `${REPORTING_ENDPOINT_BASE}/main`;
 const REPORTING_ENDPOINT_DEFAULT = `${REPORTING_ENDPOINT_BASE}/default`;
 const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
@@ -23,11 +23,11 @@ app.use(function(request, response, next) {
   // Set the rules and policies (these will get violated for the demo)
   response.set(
     "Content-Security-Policy",
-    `script-src 'self'; object-src 'none'; report-to main-endpoint;`
+    `script-src 'none'; object-src 'none'; report-to main-endpoint;`
   );
-  response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
+  // response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
   // experimental
-  response.set("Permissions-Policy", `microphone=()`);
+  // response.set("Permissions-Policy", `microphone=()`);
   
   // Set the endpoints (API v1)
   response.set(
