@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: csp-service
+  namespace: default
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: csp-app
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

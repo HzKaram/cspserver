@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csp-app
+  labels:
+    app: csp-app
+  namespace: default
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: csp-app
+  template:
+    metadata:
+      labels:
+        app: csp-app
+    spec:
+      containers:
+      - name: csp-app
+        image: 777189480975.dkr.ecr.eu-central-1.amazonaws.com/csp-demo/csp:latest  # Change to your image name
+        ports:
+        - containerPort: 3000  # Change if your app uses a different port
+        env:  # Add any environment variables your app needs
+        - name: NODE_ENV
+          value: "production"

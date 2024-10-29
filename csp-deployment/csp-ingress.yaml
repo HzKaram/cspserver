@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  name: csp-ingress
+  namespace: default
+spec:
+  ingressClassName: development-network
+  rules:
+  - host: csp.k8s-cet-ingress.dst-mgmt.development-network.coma-mgmt.coma-vf.de
+    http:
+      paths:
+      - backend:
+          service:
+            name: csp-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.20.112.170
